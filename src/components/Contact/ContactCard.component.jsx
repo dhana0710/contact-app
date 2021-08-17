@@ -22,7 +22,11 @@ const CardContact = (props) => {
       </div>
       <div className="card-body">
         <p className="card-text d-flex justify-content-end">
-          <i className="fas fa-trash-alt h4" style={{ color: "red" }}></i>
+          <i
+            className="fas fa-trash-alt h4"
+            style={{ color: "red" }}
+            onClick={() => props.clickHandler(props.contact.id)}
+          ></i>
         </p>
       </div>
     </div>
