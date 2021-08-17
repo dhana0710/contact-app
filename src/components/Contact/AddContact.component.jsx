@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
-const AddContact = () => {
+const AddContact = (props) => {
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+  });
+
+  let add = (e) => {
+    e.preventDefault();
+    if (data.name === "" || data.email === "") {
+      alert("All the fields all mandatory");
+      return;
+    }
+    //console.log(data);
+    props.addContactHandler(data);
+    setData({ name: "", email: "" });
+  };
+
   return (
     <div className="container mt-3">
       <div>
         <h2>Add Contact</h2>
-        <form>
+        <form onSubmit={add}>
           <div className="mb-3">
             <label for="exampleInputName" class="form-label">
               Name
@@ -15,6 +31,15 @@ const AddContact = () => {
               className="form-control"
               id="exampleInputName"
               placeholder="Joe"
+              value={data.name}
+              onChange={(e) =>
+                setData((preval) => {
+                  return {
+                    ...preval,
+                    name: e.target.value,
+                  };
+                })
+              }
             />
           </div>
           <div class="mb-3">
@@ -27,6 +52,15 @@ const AddContact = () => {
               placeholder="@gmail.com"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              value={data.email}
+              onChange={(e) =>
+                setData((preval) => {
+                  return {
+                    ...preval,
+                    email: e.target.value,
+                  };
+                })
+              }
             />
           </div>
 
