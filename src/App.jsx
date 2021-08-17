@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { uuid } from "uuidv4";
 
 //components
 import AddContact from "./components/Contact/AddContact.component";
@@ -10,8 +11,10 @@ function App() {
 
   const addContactHandler = (contact) => {
     console.log(contact);
-    setContacts([...contacts, contact]);
+    setContacts([...contacts, { id: uuid(), ...contact }]);
   };
+
+  const removeContactHandler = (id) => {};
 
   useEffect(() => {
     const retriveConntact = JSON.parse(localStorage.getItem("contactApp"));
